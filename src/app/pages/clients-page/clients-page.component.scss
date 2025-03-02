@@ -1,0 +1,16 @@
+@import "../../theme/theme";
+@import "../../../assets/styles/spacing";
+@import "../../../assets/styles/fontSize";
+@import "../../../assets/styles/variables";
+
+.main-container {
+  width: 100%;
+  height: 100vh;
+  padding-left: $spacing-giant2x;
+  padding-right: $spacing-giant2x;
+
+  @media (max-width: 1024px) {
+    padding-left: $spacing-md;
+    padding-right: $spacing-md;
+  }
+}

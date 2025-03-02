@@ -1,0 +1,11 @@
+@import "../../../../theme/theme";
+
+.layout {
+  flex-direction: column;
+  height: 100%;
+}
+
+.layout-content {
+  height: 100vh;
+  overflow-y: auto;
+}

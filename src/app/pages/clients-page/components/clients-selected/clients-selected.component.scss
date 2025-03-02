@@ -1,0 +1,85 @@
+@import "../../../../../assets/styles/spacing";
+@import "../../../../theme/theme";
+@import "../../../../../assets//styles/fontSize";
+@import "../../../../../assets/styles/variables";
+
+.client-selected-component {
+  height: 100%;
+  margin-top: $spacing-giant2x;
+  gap: $spacing-giant;
+  margin-bottom: $spacing-xxlg;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .client-content-list {
+    .client-header-list {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: $spacing-lg;
+
+      > p {
+        @include font-size("lg");
+        font-weight: bold;
+
+        > span {
+          font-weight: bold;
+        }
+      }
+
+      @media (max-width: 700px) {
+        > p {
+          text-align: left;
+        }
+      }
+    }
+
+    .client-header-select {
+      display: flex;
+      > span {
+        @include font-size("md");
+        padding: $spacing-xsm;
+      }
+
+      > select {
+        background: transparent;
+        border-radius: $border-radius;
+        border: 1px solid $off-color;
+        padding: $spacing-xsm;
+        cursor: pointer;
+        outline: none;
+      }
+
+      @media (max-width: 700px) {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        > select {
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+
+  .card-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-giant;
+    margin-bottom: $spacing-giant;
+
+    .no-clients-message {
+      margin: $spacing-giant 0;
+    }
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      width: 100%;
+      gap: $spacing-md;
+    }
+  }
+}

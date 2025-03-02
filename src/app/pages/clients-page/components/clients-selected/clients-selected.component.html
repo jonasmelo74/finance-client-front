@@ -1,0 +1,29 @@
+<section class="client-selected-component">
+  <div class="client-content-list">
+    <div class="client-header-list">
+      <p>Clientes selecionados:</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <ng-container *ngIf="clientsSelected.length > 0; else noClientsMessage">
+      <app-card-root *ngFor="let client of clientsSelected">
+        <app-card-header [title]="client.name"></app-card-header>
+        <app-card-boody>
+          <p>Salário: {{ client.salary | currencyFormat }}</p>
+          <p>Empresa: {{ client.companyValuation | currencyFormat }}</p>
+        </app-card-boody>
+        <app-card-footer>
+          <span></span>
+          <app-icon [icon]="'minus'" [size]="'sm'" [color]="'secondary'" (click)="unSelected(client.id)"></app-icon>
+        </app-card-footer>
+      </app-card-root>
+    </ng-container>
+
+    <ng-template #noClientsMessage>
+      <p class="no-clients-message">Nenhum cliente selecionado</p>
+    </ng-template>
+  </div>
+
+  <app-button label="Limpar clientes selecionados" [type]="'outline'" (click)="clearAllClients()"></app-button>
+</section>

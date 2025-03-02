@@ -1,0 +1,7 @@
+@import "../../../../../../assets/styles/spacing";
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}

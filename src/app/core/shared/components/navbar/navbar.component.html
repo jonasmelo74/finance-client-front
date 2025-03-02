@@ -1,0 +1,63 @@
+<nav class="navbar">
+  <div class="navbar-content">
+    <div class="top-nav">
+      <button class="menu-button" (click)="toggleMenu()">
+        <app-icon [icon]="'alignJustify'" [size]="'md'"></app-icon>
+      </button>
+
+      <img src="/assets/images/Logo-Teddy.png" alt="Teddy Logo" class="logo" />
+    </div>
+
+    <div class="sidebar" [class.open]="isMenuOpen">
+      <div class="top-sidebar">
+        <button class="close-button" (click)="toggleMenu()">
+          <span>
+            <app-icon [icon]="'arrowLeft'" [size]="'sm'"></app-icon>
+          </span>
+        </button>
+        <img src="/assets/images/Logo-Teddy.png" alt="Teddy Logo" class="logo" />
+      </div>
+
+      <div>
+        <ul class="menu navigation-menu-mobile">
+          <li *ngFor="let item of menuItems">
+            <a [href]="" (click)="selectView(item.view)" (click)="toggleMenu()"
+              [ngClass]="{'active': selectedView === item.view}">{{
+              item.label }}</a>
+          </li>
+          <li>
+            <a href="" (click)="logout()">Sair</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <ul class="content-sidebar">
+          <li *ngFor="let item of sideItems">
+            <a>
+              <img [src]="'/assets/icons/' + item.icon + '.svg'" alt="{{item.label}} icon" />
+              {{ item.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <ul class="menu">
+        <li *ngFor="let item of menuItems">
+          <a (click)="selectView(item.view)" [ngClass]="{'active': selectedView === item.view}">{{ item.label }}</a>
+        </li>
+        <li>
+          <a href="" (click)="logout()">Sair</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="user-text">
+        Olá, <span>{{userName | formattedName }}</span>
+      </p>
+    </div>
+  </div>
+</nav>

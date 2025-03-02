@@ -1,0 +1,12 @@
+<main class="main-container d-flex flex-row">
+  <section class="d-flex flex-column justify-content-center align-items-center gap-4 px-5">
+    <h1>Olá, seja bem-vindo!</h1>
+    <app-input type="text" placeholder="Digite seu nome:" size="lg" [(ngModel)]="userName"></app-input>
+    <app-button label="Entrar" [type]="userName.length > 0 ? 'default' : 'disabled'" size="lg" (click)="onRegister()"
+      [disabled]="userName.length <= 0">
+    </app-button>
+  </section>
+  <aside class="d-flex justify-content-center align-items-center">
+    <img src="/assets/images/info.png" alt="Teddy Logo" class="logo" />
+  </aside>
+</main>

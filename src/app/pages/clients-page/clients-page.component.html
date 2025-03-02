@@ -1,0 +1,18 @@
+<app-layout [menuItems]="menuItems" [sideItems]="sideItems" (viewChanged)="changeView($event)">
+  <main class="main-container">
+
+    <ng-content>
+
+      <app-loading *ngIf="isLoading"></app-loading>
+
+      <div *ngIf="!isLoading && selectedView === ClientsNavigation.CLIENTS">
+        <app-clients-list (getClientListEmit)="getClients()" [clientData]="clientData">
+        </app-clients-list>
+      </div>
+
+      <div *ngIf="!isLoading && selectedView === ClientsNavigation.CLIENTSSELECTED">
+        <app-clients-selected></app-clients-selected>
+      </div>
+    </ng-content>
+  </main>
+</app-layout>

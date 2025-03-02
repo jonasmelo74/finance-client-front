@@ -1,0 +1,53 @@
+<section class="client-list-component">
+  <div class="client-content-list">
+    <div class="client-header-list">
+      <p><span>{{ clientData?.clients?.length || 0 }}</span> clientes encontrado(s):</p>
+
+      <div class="client-header-select">
+        <span>Clientes por página: </span>
+        <select (change)="changeLimit($event)">
+          <option *ngFor="let limit of [18, 16, 5, 1]" [value]="limit" [selected]="limit === limitPage">
+            {{ limit}}
+          </option>
+        </select>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!clientData?.clients?.length" class="no-clients-message">
+    <p>Nenhum cliente encontrado.</p>
+    <p>Clique no botão abaixo para criar um novo cliente.</p>
+  </div>
+
+  <div class="card-grid">
+    <app-card-root *ngFor="let client of clientData?.clients">
+      <app-card-header [title]="client.name"></app-card-header>
+      <app-card-boody>
+        <p>Salário: {{ client.salary | currencyFormat }}</p>
+        <p>Empresa: {{ client.companyValuation | currencyFormat }}</p>
+      </app-card-boody>
+      <app-card-footer>
+        <app-icon [icon]="isSelected(client.id) ? 'check' : 'plus'" [size]="'md'" (click)="handleSelect(client)">
+        </app-icon>
+        <app-icon [icon]="'pencil'" [size]="'sm'" (click)="setClientUpdate(client)"></app-icon>
+        <app-icon [icon]="'trash2'" [size]="'sm'" [color]="'dangerous'" (click)="setClientDelete(client)"></app-icon>
+      </app-card-footer>
+    </app-card-root>
+  </div>
+
+  <app-button class="pb-5 mb-4" label="Criar cliente" [type]="'outline'" (click)="isCreateModalOpen = true"></app-button>
+
+  <app-modal-creat [isModalOpen]="isCreateModalOpen" (onClose)="isCreateModalOpen = false"
+    (createClient)="createClient($event)"></app-modal-creat>
+  <app-modal-edit [clientData]="clientToUpdate" [isModalOpen]="isUpdateModalOpen" (onClose)="isUpdateModalOpen = false"
+    (editClient)="updateClient($event)"></app-modal-edit>
+  <app-modal-delete [clientName]="clientToDelete?.name" [isModalOpen]="isDeleteModalOpen"
+    (onClose)="isDeleteModalOpen = false" (deleteClient)="deleteClient()"></app-modal-delete>
+
+
+  <app-pagination [totalPages]="clientData?.totalPages ?? 0" [currentPage]="clientData?.currentPage ?? 1"
+    (pageChange)="changePage($event)">
+  </app-pagination>
+
+</section>
